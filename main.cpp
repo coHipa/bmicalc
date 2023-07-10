@@ -40,6 +40,17 @@ int main(){
     double input_height {};
     std::cin >> input_height; 
 
+    std::cout << "Enter your gender: (m/w)";
+    char input_gender {};
+    std::cin >> input_gender;
+
+    if (input_gender == 'm'){
+        // do this calc
+    }
+    else {
+        // calc this
+    }
+
     std::cout.precision(2);
     std::cout << "Your BMI is: " << bmi_calculation(input_weight, input_height) << std::endl;
     rating(bmi_calculation(input_weight, input_height));
