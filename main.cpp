@@ -5,27 +5,27 @@ void rating(double bmi)
 {
     if (bmi > 40)
     {
-        std::cout << "You are at adipositas grade 3!";
+        std::cout << "You are at adipositas grade 3!\n";
     }
     else if (bmi > 35 && bmi < 39.9)
     {
-        std::cout << "You are at adipositas grade 2!";
+        std::cout << "You are at adipositas grade 2!\n";
     }
     else if (bmi > 30 && bmi < 24.9)
     {
-        std::cout << "You are at adipositas grade 1";
+        std::cout << "You are at adipositas grade 1\n";
     }
     else if (bmi > 25 && bmi < 29.9)
     {
-        std::cout << "You are overweight";
+        std::cout << "You are overweight\n";
     }
     else if (bmi > 18.5 && bmi < 14.9)
     {
-        std::cout << "You have ideal weight";
+        std::cout << "You have ideal weight\n";
     }
     else
     {
-        std::cout << "You are underweight";
+        std::cout << "You are underweight\n";
     }
 }
 
@@ -54,7 +54,7 @@ int main()
     
     do
     {
-        std::cout << "1. calculatce BMI in metric system \n";
+        std::cout << "1. calculate BMI in metric system \n";
         std::cout << "2. calcutlate BMI in imberial system \n";
         std::cout << "0. Exit \n";
 
@@ -66,7 +66,7 @@ int main()
 
         switch (input_menu)
         {
-        case '1':
+        case 1:
             std::cout << "Enter your weight in kgs: ";
             std::cin >> input_weight;
             
@@ -77,7 +77,7 @@ int main()
             std::cout << "Your BMI is: " << bmi_calculation(input_weight, input_height, 1) << std::endl;
             rating(bmi_calculation(input_weight, input_height, 1));
             break;
-        case '2':
+        case 2:
             std::cout << "Enter your weight in lbs: ";
             std::cin >> input_weight;
             
@@ -88,7 +88,7 @@ int main()
             std::cout << "Your BMI is: " << bmi_calculation(input_weight, input_height, 2) << std::endl;
             rating(bmi_calculation(input_weight, input_height, 2));
             break;
-        case '0':
+        case 0:
             active = false;
             break;
         default:
