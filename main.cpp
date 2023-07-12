@@ -29,19 +29,6 @@ void rating(double bmi)
     }
 }
 
-double bmi_calculation(double weight, double height, int choice)
-{
-    if (choice == 1)
-    {
-        return weight / pow((height / 100), 2);
-    }
-    else
-    {
-        return 703 * (weight / pow(height, 2));
-    }
-
-}
-
 int main()
 {
 
@@ -70,11 +57,12 @@ int main()
                 
                 std::cout << "Enter your height in cm: ";
                 std::cin >> input_height; 
-                double bmi_result = bmi_calculation(input_weight, input_height, 1);
+                double bmi_result = input_weight / pow((input_height / 100), 2);
 
                 std::cout.precision(2);
                 std::cout << "Your BMI is: " << bmi_result << std::endl;
                 rating(bmi_result);
+
                 break;
             }
             case 2:
@@ -84,11 +72,12 @@ int main()
                 
                 std::cout << "Enter your height in in: ";
                 std::cin >> input_height;  
-                double bmi_result = bmi_calculation(input_weight, input_height, 2);
+                double bmi_result = 703 * (input_weight / pow(input_height, 2));
 
                 std::cout.precision(2);
                 std::cout << "Your BMI is: " << bmi_result << std::endl;
                 rating(bmi_result);
+
                 break;
             }
             case 0:
