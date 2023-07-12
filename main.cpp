@@ -69,7 +69,7 @@ int main()
                     }
                     else
                     {
-                        throw "You must be taller than 0cm\n\n";
+                        throw "You must be taller than 0 centimeters.\n\n";
                     }
                 }
                 catch(const char* msg)
@@ -86,11 +86,25 @@ int main()
                 
                 std::cout << "Enter your height in in: ";
                 std::cin >> input_height;  
-                double bmi_result = 703 * (input_weight / pow(input_height, 2));
+                try
+                {
+                    if (input_height > 0)
+                    {
+                        double bmi_result = 703 * (input_weight / pow(input_height, 2));
 
-                std::cout.precision(2);
-                std::cout << "Your BMI is: " << bmi_result << std::endl;
-                rating(bmi_result);
+                        std::cout.precision(2);
+                        std::cout << "Your BMI is: " << bmi_result << std::endl;
+                        rating(bmi_result);
+                    }
+                    else
+                    {
+                        throw "You must be taller than 0 inches.\n\n";
+                    }
+                }
+                catch(const char* msg)
+                {
+                    std::cout << msg;
+                }
 
                 break;
             }
