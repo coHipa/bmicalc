@@ -24,80 +24,71 @@ void rating(double bmi) {
 
 int main() {
 
-    bool active = true;
-
-    std::cout << "Your BMI calculator" << std::endl;
+    std::cout << "Your BMI calculator\n";
     
-    do {
-        std::cout << "1. calculate BMI in metric system \n";
-        std::cout << "2. calcutlate BMI in imberial system \n";
-        std::cout << "0. Exit \n";
+    std::cout << "1. calculate BMI in metric system \n";
+    std::cout << "2. calcutlate BMI in imperial system \n";
 
-        short input_menu = {};
-        std::cin >> input_menu;
+    short userMenu = {};
+    std::cin >> userMenu;
 
-        double input_weight {};
-        double input_height {};
+    double userWeight {};
+    double userHeight {};
 
-        switch (input_menu) {
-            case 1: {
-                std::cout << "Enter your weight in kgs: ";
-                std::cin >> input_weight;
-                
-                std::cout << "Enter your height in cm: ";
-                std::cin >> input_height; 
-                try {
-                    if (input_height > 0) {
-                        double bmi_result = input_weight / pow((input_height / 100), 2);
+    switch (userMenu) {
+        case 1: {
+            std::cout << "Enter your weight in kgs: ";
+            std::cin >> userWeight;
+            
+            std::cout << "Enter your height in cm: ";
+            std::cin >> userHeight; 
+            try {
+                if (userHeight > 0) {
+                    double bmi_result = userWeight / pow((userHeight / 100), 2);
 
-                        std::cout.precision(2);
-                        std::cout << "Your BMI is: " << bmi_result << std::endl;
-                        rating(bmi_result);
-                    }
-                    else {
-                        throw "You must be taller than 0 centimeters.\n\n";
-                    }
+                    std::cout.precision(2);
+                    std::cout << "Your BMI is: " << bmi_result << std::endl;
+                    rating(bmi_result);
                 }
-                catch(const char* msg) {
-                    std::cerr << msg;
+                else {
+                    throw "You must be taller than 0 centimeters.\n\n";
                 }
-                
-                break;
             }
-            case 2: {
-                std::cout << "Enter your weight in lbs: ";
-                std::cin >> input_weight;
-                
-                std::cout << "Enter your height in in: ";
-                std::cin >> input_height;  
-                try {
-                    if (input_height > 0) {
-                        double bmi_result = 703 * (input_weight / pow(input_height, 2));
-
-                        std::cout.precision(2);
-                        std::cout << "Your BMI is: " << bmi_result << std::endl;
-                        rating(bmi_result);
-                    }
-                    else {
-                        throw "You must be taller than 0 inches.\n\n";
-                    }
-                }
-                catch(const char* msg) {
-                    std::cerr << msg;
-                }
-
-                break;
+            catch(const char* msg) {
+                std::cerr << msg;
             }
-            case 0: {
-                active = false;
-                break;
-            }
-            default: {
-                std::cout << "Invalid input!\n";
-                break;
-            }
+            
+            break;
         }
-    } while (active);
+        case 2: {
+            std::cout << "Enter your weight in lbs: ";
+            std::cin >> userWeight;
+            
+            std::cout << "Enter your height in in: ";
+            std::cin >> userHeight;  
+            try {
+                if (userHeight > 0) {
+                    double bmi_result = 703 * (userWeight / pow(userHeight, 2));
+
+                    std::cout.precision(2);
+                    std::cout << "Your BMI is: " << bmi_result << std::endl;
+                    rating(bmi_result);
+                }
+                else {
+                    throw "You must be taller than 0 inches.\n\n";
+                }
+            }
+            catch(const char* msg) {
+                std::cerr << msg;
+            }
+
+            break;
+        }
+        default: {
+            std::cout << "Invalid input!\n";
+            break;
+        }
+    }
     
     return 0;
 }
