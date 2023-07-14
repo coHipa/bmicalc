@@ -2,7 +2,14 @@
 #include <iostream>
 #include <fstream>
 
-void rating(float bmi) {
+void saveResult(double result){
+    std::ofstream saveFile;
+    saveFile.open("test.txt", std::ios_base::app);
+    saveFile << result;
+    saveFile.close();
+}
+
+void rating(double bmi) {
     if(bmi > 40) {
         std::cout << "You are at adipositas grade 3!\n";
     }
@@ -34,8 +41,8 @@ int main() {
     short userMenu = {};
     std::cin >> userMenu;
 
-    float userWeight {};
-    float userHeight {};
+    double userWeight {};
+    double userHeight {};
 
     switch(userMenu) {
         case 1: {
@@ -46,16 +53,13 @@ int main() {
             std::cin >> userHeight; 
             try {
                 if(userHeight > 0) {
-                    float bmiResult = userWeight / pow((userHeight / 100), 2);
+                    double bmiResult = userWeight / pow((userHeight / 100), 2);
 
                     std::cout.precision(2);
                     std::cout << "Your BMI is: " << bmiResult << std::endl;
                     rating(bmiResult);
 
-                    std::ofstream saveFile;
-                    saveFile.open("test.txt");
-                    saveFile << bmiResult;
-                    saveFile.close();
+                    saveResult(bmiResult);
                 }
                 else {
                     throw "You must be taller than 0 centimeters.\n\n";
@@ -75,11 +79,13 @@ int main() {
             std::cin >> userHeight;  
             try {
                 if(userHeight > 0) {
-                    float bmiResult = 703 * (userWeight / pow(userHeight, 2));
+                    double bmiResult = 703 * (userWeight / pow(userHeight, 2));
 
                     std::cout.precision(2);
                     std::cout << "Your BMI is: " << bmiResult << std::endl;
                     rating(bmiResult);
+
+                    saveResult(bmiResult);
                 }
                 else {
                     throw "You must be taller than 0 inches.\n\n";
