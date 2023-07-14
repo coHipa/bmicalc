@@ -1,20 +1,21 @@
-#include <iostream>
 #include <cmath>
+#include <iostream>
+#include <fstream>
 
-void rating(double bmi) {
-    if (bmi > 40) {
+void rating(float bmi) {
+    if(bmi > 40) {
         std::cout << "You are at adipositas grade 3!\n";
     }
-    else if (bmi > 35 && bmi < 39.9) {
+    else if(bmi > 35 && bmi < 39.9) {
         std::cout << "You are at adipositas grade 2!\n";
     }
-    else if (bmi > 30 && bmi < 24.9) {
+    else if(bmi > 30 && bmi < 24.9) {
         std::cout << "You are at adipositas grade 1\n";
     }
-    else if (bmi > 25 && bmi < 29.9) {
+    else if(bmi > 25 && bmi < 29.9) {
         std::cout << "You are overweight\n";
     }
-    else if (bmi > 18.5 && bmi < 14.9) {
+    else if(bmi > 18.5 && bmi < 14.9) {
         std::cout << "You have ideal weight\n";
     }
     else {
@@ -26,16 +27,17 @@ int main() {
 
     std::cout << "Your BMI calculator\n";
     
-    std::cout << "1. calculate BMI in metric system \n";
-    std::cout << "2. calcutlate BMI in imperial system \n";
+    std::cout << "1. calculate BMI in metric system\n";
+    std::cout << "2. calcutlate BMI in imperial system\n";
+    std::cout << "3. show last five calculations\n";
 
     short userMenu = {};
     std::cin >> userMenu;
 
-    double userWeight {};
-    double userHeight {};
+    float userWeight {};
+    float userHeight {};
 
-    switch (userMenu) {
+    switch(userMenu) {
         case 1: {
             std::cout << "Enter your weight in kgs: ";
             std::cin >> userWeight;
@@ -43,12 +45,17 @@ int main() {
             std::cout << "Enter your height in cm: ";
             std::cin >> userHeight; 
             try {
-                if (userHeight > 0) {
-                    double bmi_result = userWeight / pow((userHeight / 100), 2);
+                if(userHeight > 0) {
+                    float bmiResult = userWeight / pow((userHeight / 100), 2);
 
                     std::cout.precision(2);
-                    std::cout << "Your BMI is: " << bmi_result << std::endl;
-                    rating(bmi_result);
+                    std::cout << "Your BMI is: " << bmiResult << std::endl;
+                    rating(bmiResult);
+
+                    std::ofstream saveFile;
+                    saveFile.open("test.txt");
+                    saveFile << bmiResult;
+                    saveFile.close();
                 }
                 else {
                     throw "You must be taller than 0 centimeters.\n\n";
@@ -67,12 +74,12 @@ int main() {
             std::cout << "Enter your height in in: ";
             std::cin >> userHeight;  
             try {
-                if (userHeight > 0) {
-                    double bmi_result = 703 * (userWeight / pow(userHeight, 2));
+                if(userHeight > 0) {
+                    float bmiResult = 703 * (userWeight / pow(userHeight, 2));
 
                     std::cout.precision(2);
-                    std::cout << "Your BMI is: " << bmi_result << std::endl;
-                    rating(bmi_result);
+                    std::cout << "Your BMI is: " << bmiResult << std::endl;
+                    rating(bmiResult);
                 }
                 else {
                     throw "You must be taller than 0 inches.\n\n";
@@ -81,6 +88,18 @@ int main() {
             catch(const char* msg) {
                 std::cerr << msg;
             }
+
+            break;
+        }
+        case 3: {
+            std::string line;
+            std::ifstream saveFile("test.txt");
+            if(saveFile.is_open()){
+                while(getline(saveFile,line)){
+                    std::cout << line << '\n';
+                }
+            }
+            else std::cout << "Unable to open File";
 
             break;
         }
