@@ -5,7 +5,7 @@
 void saveResult(double result){
     std::ofstream saveFile;
     saveFile.open("test.txt", std::ios_base::app);
-    saveFile << result;
+    saveFile << result << '\n';
     saveFile.close();
 }
 
@@ -25,9 +25,7 @@ void rating(double bmi) {
     else if(bmi > 18.5 && bmi < 14.9) {
         std::cout << "You have ideal weight\n";
     }
-    else {
-        std::cout << "You are underweight\n";
-    }
+    else std::cout << "You are underweight\n"; 
 }
 
 int main() {
@@ -36,7 +34,7 @@ int main() {
     
     std::cout << "1. calculate BMI in metric system\n";
     std::cout << "2. calcutlate BMI in imperial system\n";
-    std::cout << "3. show last five calculations\n";
+    std::cout << "3. show last calculations\n";
 
     short userMenu = {};
     std::cin >> userMenu;
@@ -56,14 +54,12 @@ int main() {
                     double bmiResult = userWeight / pow((userHeight / 100), 2);
 
                     std::cout.precision(2);
-                    std::cout << "Your BMI is: " << bmiResult << std::endl;
+                    std::cout << "Your BMI is: " << bmiResult << '\n';
                     rating(bmiResult);
 
                     saveResult(bmiResult);
                 }
-                else {
-                    throw "You must be taller than 0 centimeters.\n\n";
-                }
+                else throw "You must be taller than 0 centimeters.\n\n";
             }
             catch(const char* msg) {
                 std::cerr << msg;
@@ -82,14 +78,12 @@ int main() {
                     double bmiResult = 703 * (userWeight / pow(userHeight, 2));
 
                     std::cout.precision(2);
-                    std::cout << "Your BMI is: " << bmiResult << std::endl;
+                    std::cout << "Your BMI is: " << bmiResult << '\n';
                     rating(bmiResult);
 
                     saveResult(bmiResult);
                 }
-                else {
-                    throw "You must be taller than 0 inches.\n\n";
-                }
+                else throw "You must be taller than 0 inches.\n\n";      
             }
             catch(const char* msg) {
                 std::cerr << msg;
