@@ -34,30 +34,14 @@ int main() {
     
     std::cout << "1. calculate BMI in metric system\n";
     std::cout << "2. calcutlate BMI in imperial system\n";
-    std::cout << "3. show last calculations\n";
+    std::cout << "3. show last calculations\n"; 
 
-<<<<<<< HEAD
-    std::cout << "Enter your gender: (m/w)";
-    char input_gender {};
-    std::cin >> input_gender;
-
-    if (input_gender == 'm'){
-        // do this calc
-    }
-    else {
-        // calc this
-    }
-
-    std::cout.precision(2);
-    std::cout << "Your BMI is: " << bmi_calculation(input_weight, input_height) << std::endl;
-    rating(bmi_calculation(input_weight, input_height));
-=======
     short userMenu = {};
     std::cin >> userMenu;
->>>>>>> main
 
     double userWeight {};
     double userHeight {};
+    char userGender {};
 
     switch(userMenu) {
         case 1: {
@@ -66,6 +50,9 @@ int main() {
             
             std::cout << "Enter your height in cm: ";
             std::cin >> userHeight; 
+
+            std::cout << "Enter your gender (m/w): ";
+            std::cin >> userGender;
             try {
                 if(userHeight > 0) {
                     double bmiResult = userWeight / pow((userHeight / 100), 2);
@@ -90,6 +77,8 @@ int main() {
             
             std::cout << "Enter your height in in: ";
             std::cin >> userHeight;  
+
+            std::cout << "Enter your gender (m/w)";
             try {
                 if(userHeight > 0) {
                     double bmiResult = 703 * (userWeight / pow(userHeight, 2));
