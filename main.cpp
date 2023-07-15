@@ -2,30 +2,13 @@
 #include <iostream>
 #include <fstream>
 
+#include "header.h";
+
 void saveResult(double result){
     std::ofstream saveFile;
-    saveFile.open("test.txt", std::ios_base::app);
+    saveFile.open("savefile.txt", std::ios_base::app);
     saveFile << result << '\n';
     saveFile.close();
-}
-
-void rating(double bmi) {
-    if(bmi > 40) {
-        std::cout << "You are at adipositas grade 3!\n";
-    }
-    else if(bmi > 35 && bmi < 39.9) {
-        std::cout << "You are at adipositas grade 2!\n";
-    }
-    else if(bmi > 30 && bmi < 24.9) {
-        std::cout << "You are at adipositas grade 1\n";
-    }
-    else if(bmi > 25 && bmi < 29.9) {
-        std::cout << "You are overweight\n";
-    }
-    else if(bmi > 18.5 && bmi < 14.9) {
-        std::cout << "You have ideal weight\n";
-    }
-    else std::cout << "You are underweight\n"; 
 }
 
 int main() {
@@ -41,6 +24,7 @@ int main() {
 
     double userWeight {};
     double userHeight {};
+    int userAge {};
     char userGender {};
 
     switch(userMenu) {
@@ -59,7 +43,7 @@ int main() {
 
                     std::cout.precision(2);
                     std::cout << "Your BMI is: " << bmiResult << '\n';
-                    rating(bmiResult);
+                    rating(bmiResult, userAge, userGender);
 
                     saveResult(bmiResult);
                 }
@@ -85,7 +69,7 @@ int main() {
 
                     std::cout.precision(2);
                     std::cout << "Your BMI is: " << bmiResult << '\n';
-                    rating(bmiResult);
+                    rating(bmiResult, userAge, userGender);
 
                     saveResult(bmiResult);
                 }
@@ -99,7 +83,7 @@ int main() {
         }
         case 3: {
             std::string line;
-            std::ifstream saveFile("test.txt");
+            std::ifstream saveFile("savefile.txt");
             if(saveFile.is_open()){
                 while(getline(saveFile,line)){
                     std::cout << line << '\n';
