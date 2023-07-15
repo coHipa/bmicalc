@@ -48,6 +48,7 @@ int main() {
 
             std::cout << "Enter your gender (m/w): ";
             std::cin >> userGender;
+            userGender = std::tolower(userGender);
 
             std::cout << "Enter your age: ";
             std::cin >> userAge;
