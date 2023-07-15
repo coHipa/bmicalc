@@ -99,6 +99,8 @@ void rating(double bmi, int age, char gender) {
                 }
                 else cout << "You are underweight\n";
             }
+
+            break;
         }
         case 'm': {
             if(age < 19) {
@@ -194,7 +196,12 @@ void rating(double bmi, int age, char gender) {
                 }
                 else cout << "You are underweight\n";
             }
+
+            break;
         }              
+        default: {
+            cout << "Please enter a valid gender";
+        }
     }
 }
 

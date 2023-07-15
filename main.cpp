@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "header.h";
+#include "header.h"
 
 void saveResult(double result){
     std::ofstream saveFile;
@@ -11,10 +11,19 @@ void saveResult(double result){
     saveFile.close();
 }
 
+void clearConsole() {
+    #if defined _WIN32
+        system("cls");
+    #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+        system("clear");
+    #elif defined (__APPLE__)
+        system("clear");
+    #endif 
+}
+
 int main() {
 
-    std::cout << "Your BMI calculator\n";
-    
+    std::cout << "Your BMI calculator\n"; 
     std::cout << "1. calculate BMI in metric system\n";
     std::cout << "2. calcutlate BMI in imperial system\n";
     std::cout << "3. show last calculations\n"; 
@@ -29,6 +38,8 @@ int main() {
 
     switch(userMenu) {
         case 1: {
+            clearConsole();
+
             std::cout << "Enter your weight in kgs: ";
             std::cin >> userWeight;
             
@@ -37,6 +48,10 @@ int main() {
 
             std::cout << "Enter your gender (m/w): ";
             std::cin >> userGender;
+
+            std::cout << "Enter your age: ";
+            std::cin >> userAge;
+
             try {
                 if(userHeight > 0) {
                     double bmiResult = userWeight / pow((userHeight / 100), 2);
@@ -56,6 +71,8 @@ int main() {
             break;
         }
         case 2: {
+            clearConsole();
+
             std::cout << "Enter your weight in lbs: ";
             std::cin >> userWeight;
             
@@ -63,6 +80,12 @@ int main() {
             std::cin >> userHeight;  
 
             std::cout << "Enter your gender (m/w)";
+            std::cin >> userGender;
+            userGender = std::tolower(userGender);
+
+            std::cout << "Enter your age: ";
+            std::cin >> userAge;
+
             try {
                 if(userHeight > 0) {
                     double bmiResult = 703 * (userWeight / pow(userHeight, 2));
@@ -82,6 +105,7 @@ int main() {
             break;
         }
         case 3: {
+            clearConsole();
             std::string line;
             std::ifstream saveFile("savefile.txt");
             if(saveFile.is_open()){
@@ -94,10 +118,10 @@ int main() {
             break;
         }
         default: {
+            clearConsole();
             std::cout << "Invalid input!\n";
             break;
         }
-    }
-    
+    }  
     return 0;
 }
