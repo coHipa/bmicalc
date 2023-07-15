@@ -21,6 +21,20 @@ void clearConsole() {
     #endif 
 }
 
+std::pair<char, int> enterGenderAge() {
+    char userGender = 'm';
+    int userAge {};
+
+    std::cout << "Enter your gender (m/w): ";
+    std::cin >> userGender;
+    userGender = std::tolower(userGender);
+
+    std::cout << "Enter your age: ";
+    std::cin >> userAge;
+
+    return std::make_pair(userGender, userAge);
+}
+
 int main() {
 
     std::cout << "Your BMI calculator\n"; 
@@ -33,9 +47,8 @@ int main() {
 
     double userWeight {};
     double userHeight {};
-    int userAge {};
-    char userGender {};
-
+    std::pair<char, int> userInput = enterGenderAge();
+    
     switch(userMenu) {
         case 1: {
             clearConsole();
@@ -46,12 +59,8 @@ int main() {
             std::cout << "Enter your height in cm: ";
             std::cin >> userHeight; 
 
-            std::cout << "Enter your gender (m/w): ";
-            std::cin >> userGender;
-            userGender = std::tolower(userGender);
-
-            std::cout << "Enter your age: ";
-            std::cin >> userAge;
+            char userGender = userInput.first;
+            int userAge = userInput.second;
 
             try {
                 if(userHeight > 0) {
@@ -80,12 +89,8 @@ int main() {
             std::cout << "Enter your height in in: ";
             std::cin >> userHeight;  
 
-            std::cout << "Enter your gender (m/w)";
-            std::cin >> userGender;
-            userGender = std::tolower(userGender);
-
-            std::cout << "Enter your age: ";
-            std::cin >> userAge;
+            char userGender = userInput.first;
+            int userAge = userInput.second;
 
             try {
                 if(userHeight > 0) {
