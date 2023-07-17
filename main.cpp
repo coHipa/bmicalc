@@ -122,8 +122,8 @@ int main() {
                 if(saveFile.is_open()){
                     while(getline(saveFile,line)){
                         std::cout << line << '\n';
-                        saveFile.close();
                     }
+                    saveFile.close();
                 }
                 else std::cout << "Unable to open File";
 
